@@ -2,12 +2,14 @@ trigger:
   branches:
     include:
     - Test_Branch
+    - UI_Changes
 variables:
   solution: iDeploy_pipeline/pipeline.yml
   buildPlatform: Any CPU
   buildConfiguration: Debug
   imageName: windows-2019
   artifactName: Ideploy-Drop
+  projectPath: EmployeeManagementSystem/EmployeeManagementSystem.csproj
 pool:
   vmImage: $(imageName)
 steps:
@@ -20,6 +22,11 @@ steps:
     solution: $(solution)
     platform: $(buildPlatform)
     configuration: $(buildConfiguration)
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: $(projectPath)
+    arguments: --configuration $(buildConfiguration)
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: $(Pipeline.Workspace)
