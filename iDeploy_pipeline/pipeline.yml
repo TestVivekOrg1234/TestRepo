@@ -2,7 +2,6 @@ trigger:
   branches:
     include:
     - Test_Branch
-    - UI_Changes
 variables:
   solution: iDeploy_pipeline/pipeline.yml
   buildPlatform: Any CPU
@@ -22,11 +21,6 @@ steps:
     solution: $(solution)
     platform: $(buildPlatform)
     configuration: $(buildConfiguration)
-- task: DotNetCoreCLI@2
-  inputs:
-    command: test
-    projects: $(projectPath)
-    arguments: --configuration $(buildConfiguration)
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: $(Pipeline.Workspace)
