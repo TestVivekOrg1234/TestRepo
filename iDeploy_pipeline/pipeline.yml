@@ -8,7 +8,7 @@ variables:
   buildConfiguration: Debug
   imageName: windows-2019
   artifactName: Ideploy-Drop
-  projectPath: EmployeeManagementSystem/EmployeeManagementSystem.csproj
+  projectPath: ''
 pool:
   vmImage: $(imageName)
 steps:
